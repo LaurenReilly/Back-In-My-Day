@@ -50,6 +50,8 @@ app.get("/", function(req, res, next) {
 
 
 //send response back with list of questions based on which ageRange they selected
+//form data is sent in the req.body as an object. key is the name attribute of the <select> element (ageRange) and the value
+//is the value attribute of the age range they selected. Those values correspond to keys in the questions object.
 app.post("/questions", function(req,res,next) {
   let ageRange = req.body.ageRange
   res.render('questionForm', questions[ageRange]);

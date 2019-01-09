@@ -3,11 +3,15 @@
 <% include partials/head.ejs %>
 <body>
    <div class="container">
-       <form action="/login" id="login">
-           <label form="login" for="username">Login PlaceHolder</label>
-           <input id="username" type="text">
-           <input type="submit">
-        </form>
+      <% include partials/header.ejs %>
+      <div class="text-center">
+         <form action="/login" id="login">
+            <label form="login" for="username">Login PlaceHolder</label>
+            <input id="username" type="text">
+            <input type="submit">
+         </form>
+      </div>
+      <% include partials/footer.ejs %>
    </div> 
 </body>
 </html>
