@@ -1,9 +1,14 @@
-<select name="ageRange">
+<form action="/questions" method="POST">
+    <select name="ageRange" id="ageRange">
         <option value="early">Early Childhood(0-5)</option>
         <option value="kid">Kid (5-10)</option>
         <option value="preteen">Preteen (10-12)</option>
         <option value="tween">Tween (11-14)</option>
         <option value="teenager">Teenager (13-18)</option>
         <option value="youngAdult">Young Adult (18-21)</option>
-        <option value="Adult">Adult (21+)</option>
-</select>
+        <option value="adult">Adult (21+)</option>
+    </select>
+    <input type="submit" value="Submit" class="btn btn-primary">
+</form>
+
+
