@@ -1,7 +1,14 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Page Title</title>
-  </head>
-  <body></body>
+<html lang="en">
+<% include partials/head.ejs %>
+<body>
+    <div class="container">
+       <% include partials/header.ejs %>
+        <div class="main text-center">
+            <!-- based on what age they select they will be given a different set of questions send as a post request and server will respond with questions corresponding to the age range -->
+            <% include partials/select.ejs %>
+        </div>
+        <% include partials/footer.ejs %>
+    </div>
+</body>
 </html>
