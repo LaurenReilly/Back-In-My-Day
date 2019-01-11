@@ -2,13 +2,14 @@
 <html lang="en">
 <% include partials/head.ejs %>
 <body>
+   <% include partials/header.ejs %>
    <div class="container">
-      <% include partials/header.ejs %>
+      
       <div class="text-center">
          <form action="/login" id="login">
             <label form="login" for="username">Login PlaceHolder</label>
-            <input id="username" type="text">
-            <input type="submit">
+            <input id="username" type="text" class="loginInput rounded">
+            <input type="submit" value="Submit" class="btn submit">
          </form>
       </div>
       <% include partials/footer.ejs %>

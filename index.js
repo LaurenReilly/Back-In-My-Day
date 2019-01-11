@@ -16,6 +16,9 @@ const PORT = process.env.PORT || 3000;
 app.set("view engine", "ejs");
 app.set("views", "app/views");
 
+//telling our server where the files to serve are located
+app.use(express.static(__dirname + '/app'));
+
 app.use("/", about);
 app.use("/", login);
 
@@ -33,13 +36,13 @@ app.use(express.static('app'));
 
 
 let questions = [
-  {ageRange: "early", ageRangeTitle:"Your Early Childhood (fetus through five)", question1: "What was the scary thing that lived in your house?", question2: "Your imaginary friend?", question3: "A made up game you played with your friends/siblings?"},
-  {ageRange: "kid",ageRangeTitle:"Your Kid Times (five years old to double digits)", question1: "What did you get in trouble for most?", question2: "What kind of student were you?", question3: "Biggest fear?"},
-  {ageRange: "preteen",ageRangeTitle:"Your Preteen years (when you were still cute as a button)", question1: "What did you hate having to eat for dinner?", question2: "Get into any trouble online?", question3: "Favorite thing you did on weekends?"},
-  {ageRange: "tween",ageRangeTitle:"Your Tween times (when you were smelly and didn't realize it yet)", question1: "Who was your celebrity crush?", question2: "What song got you pumped at the school dance?", question3: "What did you think you would do when you grew up?"},
-  {ageRange: "teenager",ageRangeTitle:"Your Teenage Years (when you were fighting pimples, hormones, and your parent's rules)", question1: "What pissed you off more than anything else?", question2: "Biggest surprise about hitting puberty?", question3: "One of the worst things you did?"},
-  {ageRange: "youngAdult", ageRangeTitle:"Your Young Adult Years (when you had to do all the chores, pay rent, AND feed yourself)", question1: "What did you eat on a regular basis?", question2: "What was the state of your bedroom?", question3: "What did your dating life look like?"},
-  {ageRange: "adult", ageRangeTitle:"Your Boring Adult Years (it's this for a while and then...yeah...ghosts)", question1: "Is this where you saw yourself?", question2: "Do you wear socks with holes in them?", question3: "Where will you be in ten years?"}
+  {ageRange: "early", ageRangeTitle:"Your Early Childhood", question1: "What was the scary thing that lived in your house?", question2: "Your imaginary friend?", question3: "A made up game you played with your friends/siblings?"},
+  {ageRange: "kid",ageRangeTitle:"Your Kid Times", question1: "What did you get in trouble for most?", question2: "What kind of student were you?", question3: "Biggest fear?"},
+  {ageRange: "preteen",ageRangeTitle:"Your Preteen years", question1: "What did you hate having to eat for dinner?", question2: "Get into any trouble online?", question3: "Favorite thing you did on weekends?"},
+  {ageRange: "tween",ageRangeTitle:"Your Tween Times", question1: "Who was your celebrity crush?", question2: "What song got you pumped at the school dance?", question3: "What did you think you would do when you grew up?"},
+  {ageRange: "teenager",ageRangeTitle:"Your Teenage Years", question1: "What pissed you off more than anything else?", question2: "Biggest surprise about hitting puberty?", question3: "One of the worst things you did?"},
+  {ageRange: "youngAdult", ageRangeTitle:"Your Young Adult Years", question1: "What did you eat on a regular basis?", question2: "What was the state of your bedroom?", question3: "What did your dating life look like?"},
+  {ageRange: "adult", ageRangeTitle:"Your Boring Adult Years", question1: "Is this where you saw yourself?", question2: "Do you wear socks with holes in them?", question3: "Where will you be in ten years?"}
 ]
  
 

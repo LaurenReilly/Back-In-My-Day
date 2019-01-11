@@ -1,0 +1,70 @@
+
+
+/* Fonts from fonts.google api
+-use for text:
+    font-family: 'Raleway', sans-serif;
+-use for titles:
+    font-family: 'Berkshire Swash', cursive; */
+
+:root {
+    --bg-color: #FFFFFF;
+    --brand-color: #4AC9B6;
+    --text-color: #30343F;
+    --highlight: #496ECC;
+}
+
+body {
+    font-size: 1em;
+    background-color: var(--bg-color);
+    font-family: 'Raleway', sans-serif;
+} 
+
+.header {
+    width: 100%;
+    background-color: var(--text-color);
+}
+
+h1 {
+    font-size: 6em;
+    color: var(--brand-color);
+    font-family: 'Berkshire Swash', cursive;
+}
+
+h2 {
+    color: var(--highlight);
+    font-size: 4em;
+    font-family: 'Berkshire Swash', cursive;
+}
+
+h4 {
+    color: var(--text-color);
+    font-size: 1.5em;
+    font-family: 'Berkshire Swash', cursive;
+    margin: 0px;
+}
+
+h6 {
+    font-size: 1.1em;
+    color: var(--highlight);
+}
+
+.submit {
+    background-color: var(--brand-color);
+    color: var(--bg-color);
+    font-family: 'Raleway', sans-serif;
+}
+
+textarea, textarea:focus, .loginInput, .loginInput:focus {
+    outline: none;
+    border: 3px solid var(--brand-color);
+}
+
+.blocks {
+    background-color: var(--brand-color);
+}
+
+p  {
+    color: var(--text-color);
+}
+
+
