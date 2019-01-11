@@ -7,6 +7,7 @@
         <div class="main text-center">
 <!-- based on what age they select they will be given a different set of questions send as a post request and server will respond with questions corresponding to the age range -->
             <% include partials/select.ejs %>
+            <h2><%= ageRangeTitle %></h2>
             <% include partials/questions.ejs %>
         </div>
             <% include partials/footer.ejs %>

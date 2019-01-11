@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/LaurenReilly/Back-In-My-Day#readme",
   "dependencies": {
+    "bcrypt": "^3.0.3",
     "body-parser": "^1.18.3",
     "bootstrap": "^4.2.1",
     "ejs": "^2.6.1",
