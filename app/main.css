@@ -1,5 +1,3 @@
-
-
 /* Fonts from fonts.google api
 -use for text:
     font-family: 'Raleway', sans-serif;
@@ -61,7 +59,33 @@ textarea, textarea:focus, .loginInput, .loginInput:focus {
 
 .blocks {
     background-color: var(--brand-color);
+    width: 40%;
 }
+
+.navbar {
+    background-color: var(--text-color);
+    color: var(--brand-color);
+}
+
+/* unvisited link */
+a:link {
+    color: var(--brand-color);
+  }
+  
+  /* visited link */
+  a:visited {
+    color: var(--brand-color);
+  }
+  
+  /* mouse over link */
+  a:hover {
+    color: var(--bg-color);
+  }
+  
+  /* selected link */
+  a:active {
+    color: var(--highlight);
+  }
 
 p  {
     color: var(--text-color);
