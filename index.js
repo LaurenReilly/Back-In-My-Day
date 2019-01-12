@@ -54,8 +54,8 @@ app.get("/", function(req, res, next) {
 //creating a users homepage that will ideally show all of their answers to their question sets
 //here I am passing an object whose value is the questions array from above. The ejs view will map through
 //this array for now but eventually when we have our database set up will also pull answers from the database!
-app.get("/usersHomePage", function(req,res,next) {
-  res.render('usersHomePage', {questions: questions});
+app.get("/home", function(req,res,next) {
+  res.render('home', {questions: questions});
 });
 
 
@@ -69,6 +69,10 @@ app.post("/questions", function(req,res,next) {
     return element.ageRange === ageRange;
   });
   res.render('questionForm', questionSet);
+});
+
+app.get("/dataDisplay", function(req,res,next) {
+  res.render('dataDisplay');
 });
 
 //the req.body is the object with their answers stored as the values for the keys question1, question2, and question3
