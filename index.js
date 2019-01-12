@@ -68,7 +68,7 @@ app.post("/questions", function(req,res,next) {
   let questionSet = questions.find(function(element) {
     return element.ageRange === ageRange;
   });
-  res.render('questionForm', questionSet);
+  res.render('questions', questionSet);
 });
 
 app.get("/dataDisplay", function(req,res,next) {
