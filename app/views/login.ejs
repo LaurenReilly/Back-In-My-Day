@@ -7,13 +7,45 @@
    <div class="container">
       
       <div class="text-center">
-         <form action="/login" id="login">
-            <label form="login" for="username">Login PlaceHolder</label>
-            <input id="username" type="text" class="loginInput rounded">
-            <input type="submit" value="Submit" class="btn submit">
-         </form>
+        <form id="login">
+          <label form="login" for="username">Username</label>
+          <input
+            type="text"
+            name="username"
+            class="loginInput rounded"
+            placeholder="Username"
+          />
+          <label form="login" for="password">Password</label>
+          <input
+            type="text"
+            name="password"
+            class="loginInput rounded"
+            placeholder="Password"
+          />
+          <button type="submit" class="btn submit">Submit</button>
+        </form>
+
+        <form id="register">
+          <label form="login" for="username">Username</label>
+          <input
+            name="username"
+            type="text"
+            class="loginInput rounded"
+            placeholder="Username"
+          />
+          <label form="register" for="password">Password</label>
+          <input
+            name="password"
+            type="text"
+            class="loginInput rounded"
+            placeholder="Password"
+          />
+          <button type="submit" class="btn submit">Register</button>
+        </form>
       </div>
       <% include partials/footer.ejs %>
-   </div> 
-</body>
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="../main.js"></script>
+  </body>
 </html>
