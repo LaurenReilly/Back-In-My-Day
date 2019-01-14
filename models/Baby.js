@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('../config/database');
 
-const Early = db.define('early', {
+const Baby = db.define('baby', {
     question_1: {
         type: Sequelize.STRING
     },
@@ -13,4 +13,4 @@ const Early = db.define('early', {
     }
 });
 
-module.exports = Early;
+module.exports = Baby;
