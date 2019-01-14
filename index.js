@@ -5,9 +5,12 @@ const path = require("path");
 const about = require("./app/about");
 const login = require("./app/login");
 
+// Database
+const db = require('./config/database');
+
 //to parse form data
-var multer = require('multer');
-var upload = multer();
+const multer = require('multer');
+const upload = multer();
 
 const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 3000;
@@ -81,8 +84,10 @@ app.get("/dataDisplay", function(req,res,next) {
 app.post("/storeQuestions", function(req,res,next) {
   console.log(req.body);
   res.send(req.body);
-})
+});
 
+//for any route that begins with /questions we will use the questions.js file to define what happens
+app.use('/questionsDB', require('./routes/questionsDB'));
 
 app.listen(PORT, () => {
   console.log(`Starting app on ${PORT}`);
