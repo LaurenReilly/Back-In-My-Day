@@ -86,7 +86,7 @@ app.get("/dataDisplay", function(req,res,next) {
 });
 
 
-//for any route that begins with /questions we will use the questions.js file to define what happens
+//for any route that begins with /questions we will use the questionsDB.js file to define what happens
 app.use('/questionsDB', require('./routes/questionsDB'));
 
 app.listen(PORT, () => {
