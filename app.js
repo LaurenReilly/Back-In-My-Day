@@ -104,6 +104,12 @@ app.get("/", function(req, res, next) {
   res.render("about");
 });
 
+//where user can select a question set and then answer questions
+app.get("/index", function(req, res, next) {
+  // res.send("I'm the home page");
+  res.render('index');
+});
+
 //creating a users homepage that will ideally show all of their answers to their question sets
 //here I am passing an object whose value is the questions array from above. The ejs view will map through
 //this array for now but eventually when we have our database set up will also pull answers from the database!
