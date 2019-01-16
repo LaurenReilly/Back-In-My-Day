@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const bodyParser = require("body-parser");
 const passport = require("passport");
+const db = require("../../config/database");
+const User = require("../../models/User");
 
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: true }));
@@ -41,14 +43,26 @@ router.get(
   })
 );
 
-router.post("/login", function(req, res) {
-  console.log(req.body);
+router.post("/login", passport.authenticate("local"), function(req, res) {
   res.end();
 });
 
 router.post("/register", function(req, res) {
   console.log(req.body);
-  res.end();
+  let creds = req.body;
+
+  User.findOne({ where: { user_name: creds.username } }).then(function(user) {
+    if (!user) {
+      User.create({
+        user_name: creds.username,
+        password: creds.password
+      }).then(function(user) {
+        res.json({ user: user.dataValues.user_name, status: "OK" });
+      });
+    } else {
+      res.sendStatus(400);
+    }
+  });
 });
 
 module.exports = router;
