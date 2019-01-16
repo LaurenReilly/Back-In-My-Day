@@ -4,7 +4,7 @@ const app = express();
 const path = require("path");
 const authRoutes = require("./app/routes/auth-login");
 const passport = require("passport");
-// const LocalStrategy = require("passport-local");
+const LocalStrategy = require("passport-local");
 // const GithubStrategy = require("passport-github");
 const FacebookStrategy = require("passport-facebook").Strategy;
 const GitHubStrategy = require("passport-github").Strategy;
@@ -12,16 +12,15 @@ const bcrypt = require("bcryptjs");
 require("dotenv").config();
 
 if (typeof localStorage === "undefined" || localStorage === null) {
-  var LocalStorage = require('node-localstorage').LocalStorage;
-  localStorage = new LocalStorage('./scratch');
+  var LocalStorage = require("node-localstorage").LocalStorage;
+  localStorage = new LocalStorage("./scratch");
 }
- 
 
 // Database
-const db = require('./config/database');
+const db = require("./config/database");
 
 //to parse form data
-const multer = require('multer');
+const multer = require("multer");
 const upload = multer();
 
 const bodyParser = require("body-parser");
@@ -129,10 +128,12 @@ app.get("/dataDisplay", function(req, res, next) {
   res.render("dataDisplay");
 });
 
+app.get("/privacypolicy", function(req, res) {
+  res.send("This is the privacy policy page");
+});
 
 //for any route that begins with /questions we will use the questionsDB.js file to define what happens
-app.use('/questionsDB', require('./routes/questionsDB'));
-
+app.use("/questionsDB", require("./routes/questionsDB"));
 
 //the req.body is the object with their answers stored as the values for the keys question1, question2, and question3
 //we will store these in the database from here
@@ -142,24 +143,22 @@ app.post("/storeQuestions", function(req, res, next) {
   res.send(req.body);
 });
 
-// passport.use(
-//   new LocalStrategy(function(username, password, done) {
-//     db.findUserByEmail(username)
-//       .then(function(user) {
-//         if (!user) {
-//           return done(null, false);
-//         }
-//         const isCorrectPassword = bcrypt.compareSync(password, user.password);
-//         if (!isCorrectPassword) {
-//           return done(null, false);
-//         }
-//         return done(null, user);
-//       })
-//       .catch(function(err) {
-//         return done(err);
-//       });
-//   })
-// );
+passport.use(
+  new LocalStrategy(function(username, password, done) {
+    User.findOne({ user_name: username }, function(err, user) {
+      if (err) {
+        return done(err);
+      }
+      if (!user) {
+        return done(null, false);
+      }
+      if (!user.verifyPassword(password)) {
+        return done(null, false);
+      }
+      return done(null, user);
+    });
+  })
+);
 
 passport.use(
   new FacebookStrategy(
