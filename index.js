@@ -6,9 +6,18 @@ const about = require("./app/about");
 const login = require("./app/login");
 // const passport = require("passport");
 
+if (typeof localStorage === "undefined" || localStorage === null) {
+  var LocalStorage = require('node-localstorage').LocalStorage;
+  localStorage = new LocalStorage('./scratch');
+}
+ 
+
+// Database
+const db = require('./config/database');
+
 //to parse form data
-var multer = require("multer");
-var upload = multer();
+const multer = require('multer');
+const upload = multer();
 
 const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 3000;
@@ -104,6 +113,7 @@ app.get("/home", function(req,res,next) {
 //used Array.find() to return the object where the ageRange value matches the ageRange passed from the select form.
 app.post("/questions", function(req, res, next) {
   let ageRange = req.body.ageRange;
+  localStorage.setItem("ageRange", ageRange);
   let questionSet = questions.find(function(element) {
     return element.ageRange === ageRange;
   });
@@ -113,6 +123,11 @@ app.post("/questions", function(req, res, next) {
 app.get("/dataDisplay", function(req,res,next) {
   res.render('dataDisplay');
 });
+
+
+//for any route that begins with /questions we will use the questionsDB.js file to define what happens
+app.use('/questionsDB', require('./routes/questionsDB'));
+
 
 //the req.body is the object with their answers stored as the values for the keys question1, question2, and question3
 //we will store these in the database from here
