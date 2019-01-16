@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const ejs = require("ejs");
 const db = require('../config/database');
 
 const User = require('../models/User');
@@ -17,9 +16,9 @@ if (typeof localStorage === "undefined" || localStorage === null) {
     localStorage = new LocalStorage('./scratch');
 }
 
-//setting view engine and where to find views
-app.set("view engine", "ejs");
-app.set("views", "app/views");
+// //setting view engine and where to find views
+// app.set("view engine", "ejs");
+// app.set("views", "app/views");
 
 
 let questions = [
@@ -52,119 +51,68 @@ router.post("/getRandom", function(req,res,next) {
     }
     switch(ageRange) {
         case "Baby":
-            Baby.findOne({ order: 'random()' }).then((encounter) => {
-                responseObject.answer1 = encounter.question_1;
-                responseObject.answer2 = encounter.question_2;
-                responseObject.answer3 = encounter.question_3;
+            Baby.findOne({ order: db.random() }).then((user) => {
+                responseObject.answer1 = user.dataValues.question_1;
+                responseObject.answer2 = user.dataValues.question_2;
+                responseObject.answer3 = user.dataValues.question_3;
+                res.render('answers', responseObject);
             });
           break;
         case "Kid":
-            Kid.findOne({ order: 'random()' }).then((encounter) => {
-                responseObject.answer1 = encounter.question_1;
-                responseObject.answer2 = encounter.question_2;
-                responseObject.answer3 = encounter.question_3;
+            Kid.findOne({ order: db.random() }).then((user) => {
+                responseObject.answer1 = user.question_1;
+                responseObject.answer2 = user.question_2;
+                responseObject.answer3 = user.question_3;
+                res.render('answers', responseObject);
             });
           break;
         case "Preteen":
-            Preteen.findOne({ order: 'random()' }).then((encounter) => {
-                responseObject.answer1 = encounter.question_1;
-                responseObject.answer2 = encounter.question_2;
-                responseObject.answer3 = encounter.question_3;
+            Preteen.findOne({ order: db.random() }).then((user) => {
+                responseObject.answer1 = user.question_1;
+                responseObject.answer2 = user.question_2;
+                responseObject.answer3 = user.question_3;
+                res.render('answers', responseObject);
             });
           break;
         case "Tween":
-            Tween.findOne({ order: 'random()' }).then((encounter) => {
-                responseObject.answer1 = encounter.question_1;
-                responseObject.answer2 = encounter.question_2;
-                responseObject.answer3 = encounter.question_3;
+            Tween.findOne({ order: db.random() }).then((user) => {
+                responseObject.answer1 = user.question_1;
+                responseObject.answer2 = user.question_2;
+                responseObject.answer3 = user.question_3;
+                res.render('answers', responseObject);
             });
           break;
         case "Teenager":
-            Teenager.findOne({ order: 'random()' }).then((encounter) => {
-                responseObject.answer1 = encounter.question_1;
-                responseObject.answer2 = encounter.question_2;
-                responseObject.answer3 = encounter.question_3;
+            Teenager.findOne({ order: db.random() }).then((user) => {
+                responseObject.answer1 = user.question_1;
+                responseObject.answer2 = user.question_2;
+                responseObject.answer3 = user.question_3;
+                res.render('answers', responseObject);
             });
           break;
         case "Youngadult":
-            Youngadult.findOne({ order: 'random()' }).then((encounter) => {
-                responseObject.answer1 = encounter.question_1;
-                responseObject.answer2 = encounter.question_2;
-                responseObject.answer3 = encounter.question_3;
+            Youngadult.findOne({ order: db.random() }).then((user) => {
+                responseObject.answer1 = user.question_1;
+                responseObject.answer2 = user.question_2;
+                responseObject.answer3 = user.question_3;
+                res.render('answers', responseObject);
             });
           break;
         case "Adult":
-            Adult.findOne({ order: 'random()' }).then((encounter) => {
-                responseObject.answer1 = encounter.question_1;
-                responseObject.answer2 = encounter.question_2;
-                responseObject.answer3 = encounter.question_3;
+            Adult.findOne({ order: db.random() }).then((user) => {
+                responseObject.answer1 = user.question_1;
+                responseObject.answer2 = user.question_2;
+                responseObject.answer3 = user.question_3;
+                res.render('answers', responseObject);
             });
           break;
       }
-    res.render('answers', responseObject);
   });
 
 
 // slash pertains to /questions since we already pointed index.js here
 //findAll is a sequlize method, returns a promise
 router.get('/', (req, res) => User.findAll()
-.then(users => {
-    res.send('hello from routes and USER table')
-    console.log(users)
-})
-.catch(err => console.log(err)));
-
-//trying routers for each table to see if they work
-
-router.get('/baby', (req, res) => Baby.findAll()
-.then(early => {
-    res.send('hello from routes and EARLY table')
-    console.log(early)
-})
-.catch(err => console.log(err)));
-
-
-router.get('/kid', (req, res) => Kid.findAll()
-.then(users => {
-    res.send('hello from routes and Kid table')
-    console.log(users)
-})
-.catch(err => console.log(err)));
-
-
-router.get('/preteen', (req, res) => Preteen.findAll()
-.then(users => {
-    res.send('hello from routes and Preteen table')
-    console.log(users)
-})
-.catch(err => console.log(err)));
-
-
-router.get('/tween', (req, res) => Tween.findAll()
-.then(users => {
-    res.send('hello from routes and Tween table')
-    console.log(users)
-})
-.catch(err => console.log(err)));
-
-
-router.get('/teenager', (req, res) => Teenager.findAll()
-.then(users => {
-    res.send('hello from routes and USER table')
-    console.log(users)
-})
-.catch(err => console.log(err)));
-
-
-router.get('/youngadult', (req, res) => Youngadult.findAll()
-.then(users => {
-    res.send('hello from routes and youngadults table')
-    console.log(users[0].dataValues)
-})
-.catch(err => console.log(err)));
-
-
-router.get('/adult', (req, res) => Adult.findAll()
 .then(users => {
     res.send('hello from routes and USER table')
     console.log(users)
