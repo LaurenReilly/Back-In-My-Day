@@ -130,8 +130,8 @@ app.post("/questions", function(req, res, next) {
   res.render("questions", questionSet);
 });
 
-app.get("/dataDisplay", function(req, res, next) {
-  res.render("dataDisplay");
+app.get("/stories", function(req, res, next) {
+  res.render("stories");
 });
 
 app.get("/privacypolicy", function(req, res) {
