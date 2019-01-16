@@ -3,17 +3,30 @@
 <% include partials/head.ejs %>
 <body>
     <% include partials/header.ejs %>
+    <% include partials/navbar.ejs %>
         <div class="container">
-            <div class="bgimage">
-                <div class="row text-center">
+                <button type="submit" class="btn submit">Register</button>
+                <button type="submit" class="btn submit">Log In</button>
+                <br><br>
+            <div class="bgimage row text-center">
+                <img src="/images/faces.jpg">
                 <h2>"Life can only be understood backwards; but it must be lived forwards."</h2><br>
-                </div>
-                <h3><div class="tagline text-center">
-                    Back In My Day was created out of a desire to bring the past to the present and connect
-                    like-minded souls through digital reminiscing. Enjoy!</h3>
-                </div>
             </div>
-        </div>
+        </div><br><br>
+                <div class="steps">
+                        <div class="one text-center">
+                            <div class="step-one"><span><h2>Step 1</h2></span></div>
+                            <h6>Create an account and log in!</h6>
+                        </div>
+                        <div class="two text-center">
+                            <div class="step-two"><span><h2>Step 2</h2></span></div>
+                            <h6>Pick a time period from your life and answer the relative questions.</h6>
+                        </div>
+                        <div class="three text-center">
+                            <div class="step-3 text-center"><span><h2>Step 3</h2></span></div>
+                            <h6>Reminisce with and read others answers.</h6>
+                        </div>
+                    </div>
       </div>
       <% include partials/footer.ejs %>
     </div>
