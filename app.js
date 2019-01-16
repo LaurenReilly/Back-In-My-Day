@@ -139,15 +139,6 @@ app.get("/dataDisplay", function(req, res, next) {
 //for any route that begins with /questions we will use the questionsDB.js file to define what happens
 app.use('/questionsDB', require('./routes/questionsDB'));
 
-
-//the req.body is the object with their answers stored as the values for the keys question1, question2, and question3
-//we will store these in the database from here
-//should have the ability to prompt them to either see others answers or keep entering more data
-app.post("/storeQuestions", function(req, res, next) {
-  console.log(req.body);
-  res.send(req.body);
-});
-
 // passport.use(
 //   new LocalStrategy(function(username, password, done) {
 //     db.findUserByEmail(username)
