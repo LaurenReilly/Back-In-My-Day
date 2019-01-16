@@ -48,52 +48,52 @@ app.use(upload.array());
 
 let questions = [
   {
-    ageRange: "early",
-    ageRangeTitle: "Your Early Childhood",
-    question1: "What was the scary thing that lived in your house?",
-    question2: "Your imaginary friend?",
+    ageRange: "Baby", 
+    ageRangeTitle:"Your Early Childhood", 
+    question1: "What was the scary thing that lived in your house?", 
+    question2: "Your imaginary friend?", 
     question3: "A made up game you played with your friends/siblings?"
   },
   {
-    ageRange: "kid",
-    ageRangeTitle: "Your Kid Times",
-    question1: "What did you get in trouble for most?",
-    question2: "What kind of student were you?",
+    ageRange: "Kid",
+    ageRangeTitle:"Your Kid Times", 
+    question1: "What did you get in trouble for most?", 
+    question2: "What kind of student were you?", 
     question3: "Biggest fear?"
   },
   {
-    ageRange: "preteen",
-    ageRangeTitle: "Your Preteen years",
-    question1: "What did you hate having to eat for dinner?",
-    question2: "Get into any trouble online?",
+    ageRange: "Preteen",
+    ageRangeTitle:"Your Preteen years", 
+    question1: "What did you hate having to eat for dinner?", 
+    question2: "Get into any trouble online?", 
     question3: "Favorite thing you did on weekends?"
   },
   {
-    ageRange: "tween",
-    ageRangeTitle: "Your Tween Times",
-    question1: "Who was your celebrity crush?",
-    question2: "What song got you pumped at the school dance?",
+    ageRange: "Tween",
+    ageRangeTitle:"Your Tween Times", 
+    question1: "Who was your celebrity crush?", 
+    question2: "What song got you pumped at the school dance?", 
     question3: "What did you think you would do when you grew up?"
   },
   {
-    ageRange: "teenager",
-    ageRangeTitle: "Your Teenage Years",
-    question1: "What pissed you off more than anything else?",
-    question2: "Biggest surprise about hitting puberty?",
+    ageRange: "Teenager",
+    ageRangeTitle:"Your Teenage Years", 
+    question1: "What pissed you off more than anything else?", 
+    question2: "Biggest surprise about hitting puberty?", 
     question3: "One of the worst things you did?"
   },
   {
-    ageRange: "youngAdult",
-    ageRangeTitle: "Your Young Adult Years",
-    question1: "What did you eat on a regular basis?",
-    question2: "What was the state of your bedroom?",
+    ageRange: "Youngadult", 
+    ageRangeTitle:"Your Young Adult Years", 
+    question1: "What did you eat on a regular basis?", 
+    question2: "What was the state of your bedroom?", 
     question3: "What did your dating life look like?"
   },
   {
-    ageRange: "adult",
-    ageRangeTitle: "Your Boring Adult Years",
-    question1: "Is this where you saw yourself?",
-    question2: "Do you wear socks with holes in them?",
+    ageRange: "Adult", 
+    ageRangeTitle:"Your Boring Adult Years", 
+    question1: "Is this where you saw yourself?", 
+    question2: "Do you wear socks with holes in them?", 
     question3: "Where will you be in ten years?"
   }
 ];
@@ -102,6 +102,12 @@ let questions = [
 app.get("/", function(req, res, next) {
   // res.send("I'm the home page");
   res.render("about");
+});
+
+//where user can select a question set and then answer questions
+app.get("/index", function(req, res, next) {
+  // res.send("I'm the home page");
+  res.render('index');
 });
 
 //creating a users homepage that will ideally show all of their answers to their question sets
