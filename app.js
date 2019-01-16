@@ -2,9 +2,14 @@ const express = require("express");
 const ejs = require("ejs");
 const app = express();
 const path = require("path");
-const about = require("./app/about");
-const login = require("./app/login");
-// const passport = require("passport");
+const authRoutes = require("./app/routes/auth-login");
+const passport = require("passport");
+// const LocalStrategy = require("passport-local");
+// const GithubStrategy = require("passport-github");
+const FacebookStrategy = require("passport-facebook").Strategy;
+const GitHubStrategy = require("passport-github").Strategy;
+const bcrypt = require("bcryptjs");
+require("dotenv").config();
 
 //to parse form data
 var multer = require("multer");
@@ -20,7 +25,7 @@ app.set("views", "app/views");
 //telling our server where the files to serve are located
 app.use(express.static(__dirname + "/app"));
 
-app.use("/", login);
+app.use("/auth", authRoutes);
 
 // for parsing application/json
 app.use(bodyParser.json());
@@ -31,7 +36,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // for parsing multipart/form-data
 app.use(upload.array());
-app.use(express.static("app"));
 
 let questions = [
   {
@@ -85,6 +89,7 @@ let questions = [
   }
 ];
 
+//This is the about page which will serve as the home page.
 app.get("/", function(req, res, next) {
   // res.send("I'm the home page");
   res.render("about");
@@ -94,8 +99,8 @@ app.get("/", function(req, res, next) {
 //here I am passing an object whose value is the questions array from above. The ejs view will map through
 //this array for now but eventually when we have our database set up will also pull answers from the database!
 
-app.get("/home", function(req,res,next) {
-  res.render('home', {questions: questions});
+app.get("/home", function(req, res, next) {
+  res.render("home", { questions: questions });
 });
 
 //send response back with list of questions based on which ageRange they selected
@@ -107,11 +112,11 @@ app.post("/questions", function(req, res, next) {
   let questionSet = questions.find(function(element) {
     return element.ageRange === ageRange;
   });
-  res.render('questions', questionSet);
+  res.render("questions", questionSet);
 });
 
-app.get("/dataDisplay", function(req,res,next) {
-  res.render('dataDisplay');
+app.get("/dataDisplay", function(req, res, next) {
+  res.render("dataDisplay");
 });
 
 //the req.body is the object with their answers stored as the values for the keys question1, question2, and question3
@@ -121,6 +126,57 @@ app.post("/storeQuestions", function(req, res, next) {
   console.log(req.body);
   res.send(req.body);
 });
+
+// passport.use(
+//   new LocalStrategy(function(username, password, done) {
+//     db.findUserByEmail(username)
+//       .then(function(user) {
+//         if (!user) {
+//           return done(null, false);
+//         }
+//         const isCorrectPassword = bcrypt.compareSync(password, user.password);
+//         if (!isCorrectPassword) {
+//           return done(null, false);
+//         }
+//         return done(null, user);
+//       })
+//       .catch(function(err) {
+//         return done(err);
+//       });
+//   })
+// );
+
+passport.use(
+  new FacebookStrategy(
+    {
+      //options for the google strat
+      clientID: process.env.FACEBOOK_APP_ID,
+      clientSecret: process.env.FACEBOOK_APP_SECRET,
+      callbackURL: "/auth/facebook/redirect"
+    },
+    function(accessToken, refreshToken, profile, done) {
+      console.log(profile);
+      done(null);
+    }
+  )
+);
+
+passport.use(
+  new GitHubStrategy(
+    {
+      clientID: process.env.GITHUB_CLIENT_ID,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET,
+      callbackURL: "/auth/github/callback"
+    },
+    function(accessToken, refreshToken, profile, cb) {
+      // User.findOrCreate({ githubId: profile.id }, function(err, user) {
+      //   return cb(err, user);
+      // });
+      console.log(profile);
+      cb();
+    }
+  )
+);
 
 app.listen(PORT, () => {
   console.log(`Starting app on ${PORT}`);
