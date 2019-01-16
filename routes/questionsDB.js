@@ -147,7 +147,7 @@ router.post("/storeQuestions", function(req,res,next) {
             Adult.create({question_1: req.body.question1, question_2: req.body.question2, question_3: req.body.question3})
           break;
       }
-    res.send("answers entered");
+    res.render('index', {message: "Thanks for your story!"});
   });
 
 module.exports = router;

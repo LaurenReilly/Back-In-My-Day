@@ -107,7 +107,7 @@ app.get("/", function(req, res, next) {
 //where user can select a question set and then answer questions
 app.get("/index", function(req, res, next) {
   // res.send("I'm the home page");
-  res.render('index');
+  res.render('index', {message: ""});
 });
 
 //creating a users homepage that will ideally show all of their answers to their question sets
