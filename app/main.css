@@ -106,9 +106,23 @@ p  {
 .row {
   background-color: none;
   font-size: 12px;
-  position: fixed;
-  top: 30%;
+  position: relative;
+  top: 40%;
   width: 100%;
+}
+
+.tagline {
+    background-color: none;
+    position: relative;
+    top: 50%;
+}
+
+.steps {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border: 2px solid #4AC9B6;
+    border-radius: 50px 20px;
 }
 
 
