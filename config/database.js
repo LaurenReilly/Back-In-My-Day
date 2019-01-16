@@ -1,34 +1,23 @@
 const Sequelize = require('sequelize');
 
-module.exports =  new Sequelize(
-  'back_in_my_day', //database
-  'postgres', //username
-  null, //password
+module.exports = new Sequelize(
+  'd68g5cn9hqoukl', //database
+  'dpodsthlznztic', //username
+  '5fc7c2d864282715601bb38851c4ff2e30e4b9adc944566ea8e5ee3ed7d9e33e', //password
   {
-    host: 'localhost',
+    host: 'ec2-107-22-162-8.compute-1.amazonaws.comt',
     dialect: 'postgres',
+    protocol: 'postgres',
+    port: "5432",
     operatorsAliases: false,
-
-    pool: {
-      max: 5,
-      min: 0,
-      acquire: 30000,
-      idle: 10000
+    dialectOptions: {
+      ssl: true
     },
-});
-
-
-var temp = {
-  "development": {
-    "username": "zypaekpckbaoul",
-    "password": "576f6270576d033e0b97b8e7a9f004794aca808d8dc997e231ece792257cee2a",
-    "database": "dd12bc9mhjg1rf",
-    "host": "ec2-54-235-67-106.compute-1.amazonaws.com",
-    "port": "5432",
-    "protocol": "postgres",
-    "dialect": "postgres",
-    "dialectOptions": {
-      "ssl": true
+    pool: {
+        max: 5,
+        min: 0,
+        acquire: 30000,
+        idle: 10000
     }
   }
-}
+);
