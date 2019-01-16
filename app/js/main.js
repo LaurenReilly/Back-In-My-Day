@@ -11,11 +11,11 @@ registerForm.addEventListener("submit", function(e) {
     .then(function(response) {
       var user = response.data.user;
       console.log(user);
-      // alert(`Account created for ${user.username}`);
+      alert(`Account created for ${user}`);
     })
     .catch(function(err) {
       console.log(err);
-      // alert(`That user is already registered`);
+      alert(`That user is already registered`);
     });
 });
 
