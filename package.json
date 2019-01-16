@@ -2,9 +2,9 @@
   "name": "back-in-my-day",
   "version": "1.0.0",
   "description": "Creating a snapshot of your life through the years that other users can view",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node app.js",
     "heroku-postbuild": "npm install --production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
