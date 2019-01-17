@@ -106,7 +106,7 @@ app.get("/", function(req, res, next) {
 //where user can select a question set and then answer questions
 app.get("/index", function(req, res, next) {
   // res.send("I'm the home page");
-  res.render('index');
+  res.render('index', {message: ""});
 });
 
 //creating a users homepage that will ideally show all of their answers to their question sets
@@ -130,8 +130,8 @@ app.post("/questions", function(req, res, next) {
   res.render("questions", questionSet);
 });
 
-app.get("/dataDisplay", function(req, res, next) {
-  res.render("dataDisplay");
+app.get("/stories", function(req, res, next) {
+  res.render("stories");
 });
 
 app.get("/privacypolicy", function(req, res) {
@@ -141,13 +141,6 @@ app.get("/privacypolicy", function(req, res) {
 //for any route that begins with /questions we will use the questionsDB.js file to define what happens
 app.use("/questionsDB", require("./routes/questionsDB"));
 
-//the req.body is the object with their answers stored as the values for the keys question1, question2, and question3
-//we will store these in the database from here
-//should have the ability to prompt them to either see others answers or keep entering more data
-app.post("/storeQuestions", function(req, res, next) {
-  console.log(req.body);
-  res.send(req.body);
-});
 
 passport.use(
   new LocalStrategy(function(username, password, done) {
