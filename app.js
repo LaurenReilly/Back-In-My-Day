@@ -138,7 +138,7 @@ app.get("/privacypolicy", function(req, res) {
   res.send("This is the privacy policy page");
 });
 
-//for any route that begins with /questions we will use the questionsDB.js file to define what happens
+//for any route that begins with /questionsDB we will use the questionsDB.js file to define what happens
 app.use("/questionsDB", require("./routes/questionsDB"));
 
 

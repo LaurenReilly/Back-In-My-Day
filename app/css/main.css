@@ -68,6 +68,10 @@
     }
     
     /* unvisited link */
+    a {
+        transition: all .1s ease-in;
+    }
+
     a:link {
         color: var(--brand-color);
       }
@@ -80,6 +84,7 @@
       /* mouse over link */
       a:hover {
         color: var(--bg-color);
+        font-size: 1.1em;
       }
       
       /* selected link */

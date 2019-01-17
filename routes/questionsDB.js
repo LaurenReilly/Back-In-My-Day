@@ -150,4 +150,23 @@ router.post("/storeQuestions", function(req,res,next) {
     res.render('index', {message: "Thanks for your story!"});
   });
 
+
+User.hasMany(Baby, {foreignKey: 'userId'});
+Baby.belongsTo(User, {foreignKey: 'userId'});
+
+// Baby.find({ where: { ...}, include: [User]})
+router.get("/findOne", function (req, res, next) {
+    
+    Baby.findOne({
+        include: [{
+          model: User,
+          required: true
+        //   where: {id: User.id}
+         }]
+      }).then(posts => {
+        res.send(posts);
+      });
+});
+
+
 module.exports = router;
