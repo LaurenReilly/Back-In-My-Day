@@ -1,11 +1,11 @@
 <form action="/questionsDB/storeQuestions" method="POST">
     <fieldset id="questionnaire">
-        <h4><%= question1 %></h4><br>
-        <textarea class="mb-4 rounded" name="question1" id="" cols="60" rows="4"></textarea><br>
-        <h4><%= question2 %></h4><br>
-        <textarea class="mb-4 rounded" name="question2" id="" cols="60" rows="4"></textarea><br>
-        <h4><%= question3 %></h4><br>
-        <textarea class="mb-4 rounded" name="question3" id="" cols="60" rows="4"></textarea><br>
+        <h4 id="question1"><%= question1 %></h4><br>
+        <textarea class="mb-4 rounded" name="question1" id="" cols="60" rows="4" required aria-labelledby="ageRange question1" myNameId"></textarea><br>
+        <h4 id="question2"><%= question2 %></h4><br>
+        <textarea class="mb-4 rounded" name="question2" id="" cols="60" rows="4" required aria-labelledby="ageRange question2"></textarea><br>
+        <h4 id="question3"><%= question3 %></h4><br>
+        <textarea class="mb-4 rounded" name="question3" id="" cols="60" rows="4" required aria-labelledby="ageRange question3"></textarea><br>
         <input type="submit" value="Submit" class="btn btn-lg submit">
     </fieldset>
 </form>
