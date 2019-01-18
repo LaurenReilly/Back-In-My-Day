@@ -55,7 +55,9 @@ router.post("/register", function(req, res) {
     if (!user) {
       User.create({
         user_name: creds.username,
-        password: creds.password
+        password: creds.password,
+        age: creds.age,
+        email: creds.email
       }).then(function(user) {
         res.json({ user: user.dataValues.user_name, status: "OK" });
       });

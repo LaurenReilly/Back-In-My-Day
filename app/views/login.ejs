@@ -15,7 +15,7 @@
           />
           <label form="login" for="password">Password</label>
           <input
-            type="text"
+            type="password"
             name="password"
             class="loginInput rounded"
             placeholder="Password"
@@ -24,7 +24,7 @@
         </form>
 
         <form id="register" class="mt-4">
-          <label form="login" for="username">Username</label>
+          <label form="register" for="username">Username</label>
           <input
             name="username"
             type="text"
@@ -34,11 +34,26 @@
           <label form="register" for="password">Password</label>
           <input
             name="password"
-            type="text"
+            type="password"
             class="loginInput rounded"
             placeholder="Password"
           />
-          <button type="submit" class="btn submit">Register</button>
+          <br />
+          <label form="register" for="email">Email</label>
+          <input
+            name="email"
+            type="text"
+            placeholder="me@example.com"
+            class="loginInput rounded"
+          />
+          <label form="register" for="age">Age</label>
+          <input
+            name="age"
+            type="number"
+            class="loginInput rounded w-10"
+          />
+          <br />
+          <button type="submit" class="btn submit mt-2">Register</button>
         </form>
       </div>
       <% include partials/footer.ejs %>
