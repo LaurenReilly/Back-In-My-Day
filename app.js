@@ -50,61 +50,25 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(upload.array());
 
 let questions = [
-  {
-    ageRange: "early",
-    ageRangeTitle: "Your Early Childhood",
-    question1: "What was the scary thing that lived in your house?",
-    question2: "Your imaginary friend?",
-    question3: "A made up game you played with your friends/siblings?"
-  },
-  {
-    ageRange: "kid",
-    ageRangeTitle: "Your Kid Times",
-    question1: "What did you get in trouble for most?",
-    question2: "What kind of student were you?",
-    question3: "Biggest fear?"
-  },
-  {
-    ageRange: "preteen",
-    ageRangeTitle: "Your Preteen years",
-    question1: "What did you hate having to eat for dinner?",
-    question2: "Get into any trouble online?",
-    question3: "Favorite thing you did on weekends?"
-  },
-  {
-    ageRange: "tween",
-    ageRangeTitle: "Your Tween Times",
-    question1: "Who was your celebrity crush?",
-    question2: "What song got you pumped at the school dance?",
-    question3: "What did you think you would do when you grew up?"
-  },
-  {
-    ageRange: "teenager",
-    ageRangeTitle: "Your Teenage Years",
-    question1: "What pissed you off more than anything else?",
-    question2: "Biggest surprise about hitting puberty?",
-    question3: "One of the worst things you did?"
-  },
-  {
-    ageRange: "youngAdult",
-    ageRangeTitle: "Your Young Adult Years",
-    question1: "What did you eat on a regular basis?",
-    question2: "What was the state of your bedroom?",
-    question3: "What did your dating life look like?"
-  },
-  {
-    ageRange: "adult",
-    ageRangeTitle: "Your Boring Adult Years",
-    question1: "Is this where you saw yourself?",
-    question2: "Do you wear socks with holes in them?",
-    question3: "Where will you be in ten years?"
-  }
-];
+  {ageRange: "Baby", ageRangeTitle:"Your Precious Baby Years", question1: "What was the scary thing that lived in your house?", question2: "Describe your favorite toy.", question3: "A game you played with your friends/siblings?"},
+  {ageRange: "Kid", ageRangeTitle:"Your Playful Kid Years", question1: "What did you get in trouble for most?", question2: "What kind of student were you?", question3: "Biggest fear?"},
+  {ageRange: "Preteen", ageRangeTitle:"Your Confused Preteen Years", question1: "What did you hate having to eat for dinner?", question2: "Get into any trouble online?", question3: "Favorite thing you did on weekends?"},
+  {ageRange: "Tween", ageRangeTitle:"Your Dreamy Tween Years", question1: "Who was your celebrity crush?", question2: "What song got you pumped at the school dance?", question3: "What did you think you would do when you grew up?"},
+  {ageRange: "Teenager", ageRangeTitle:"Your Angsty Teenage Years", question1: "What made you angry?", question2: "Your favorite outfit?", question3: "One of the worst things you did?"},
+  {ageRange: "Youngadult", ageRangeTitle:"Your Exciting Young Adult Years", question1: "What did you do for work?", question2: "What was your living situation?", question3: "What did your social circle look like?"},
+  {ageRange: "Adult", ageRangeTitle:"Your Boring Adult Years", question1: "Is this where you saw yourself?", question2: "Any Regrets?", question3: "Where do you want to be in ten years?"}
+]
 
 //This is the about page which will serve as the home page.
 app.get("/", function(req, res, next) {
   // res.send("I'm the home page");
   res.render("about");
+});
+
+//where user can select a question set and then answer questions
+app.get("/index", function(req, res, next) {
+  // res.send("I'm the home page");
+  res.render('index', {message: ""});
 });
 
 //creating a users homepage that will ideally show all of their answers to their question sets
@@ -128,24 +92,17 @@ app.post("/questions", function(req, res, next) {
   res.render("questions", questionSet);
 });
 
-app.get("/dataDisplay", function(req, res, next) {
-  res.render("dataDisplay");
+app.get("/stories", function(req, res, next) {
+  res.render("stories");
 });
 
 app.get("/privacypolicy", function(req, res) {
   res.send("This is the privacy policy page");
 });
 
-//for any route that begins with /questions we will use the questionsDB.js file to define what happens
+//for any route that begins with /questionsDB we will use the questionsDB.js file to define what happens
 app.use("/questionsDB", require("./routes/questionsDB"));
 
-//the req.body is the object with their answers stored as the values for the keys question1, question2, and question3
-//we will store these in the database from here
-//should have the ability to prompt them to either see others answers or keep entering more data
-app.post("/storeQuestions", function(req, res, next) {
-  console.log(req.body);
-  res.send(req.body);
-});
 
 passport.use(
   new LocalStrategy(function(username, password, done) {

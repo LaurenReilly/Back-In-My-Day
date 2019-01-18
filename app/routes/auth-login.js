@@ -62,7 +62,9 @@ router.post("/register", function(req, res) {
     if (!user) {
       User.create({
         user_name: creds.username,
-        password: bcrypt.hashSync(creds.password, 10)
+        password: bcrypt.hashSync(creds.password, 10),
+        age: creds.age,
+        email: creds.email
       }).then(function(user) {
         res.json({ user: user.dataValues.user_name, status: "OK" });
       });

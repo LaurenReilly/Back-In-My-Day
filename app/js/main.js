@@ -6,8 +6,10 @@ registerForm.addEventListener("submit", function(e) {
   var registerFormValues = new FormData(registerForm);
   var username = registerFormValues.get("username");
   var password = registerFormValues.get("password");
+  var age = registerFormValues.get("age");
+  var email = registerFormValues.get("email");
   axios
-    .post("/auth/register", { username: username, password: password })
+    .post("/auth/register", { username: username, password: password, age: age, email: email })
     .then(function(response) {
       var user = response.data.user;
       console.log(user);

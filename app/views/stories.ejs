@@ -7,7 +7,8 @@
     <div class="container">
 
         <div class="text-center">
-            <h4 class="mb-5">Select an age range to view stories</h4>
+            <h2>View our stories.</h2>
+            <h4 class="mb-5">Select an age range</h4>
             <form action="/questionsDB/getRandom" method="POST" class="mb-5">
                 <select name="ageRange" id="ageRange">
                     <option value="Baby">Baby</option>
@@ -21,18 +22,7 @@
                 <input type="submit" value="Select Age" class="btn submit">
             </form>
         </div>
-        <div class="d-flex flex-wrap justify-content-center">
-                <div class="text-center rounded m-2 blocks p-2">
-                    <h4 class="mt-2 mb-4 ageRangeTitle"><%= ageRangeTitle %></h4>
-                    <h6 class="m-2"><%= question1 %></h6>
-                    <p><%= answer1 %></p>
-                    <h6 class="m-2"><%= question2 %></h6>
-                    <p><%= answer2 %></p>
-                    <h6 class="m-2"><%= question3 %></h6>
-                    <p><%= answer3 %></p>
-                </div>
-        </div>
-            <% include partials/footer.ejs %>
+    <% include partials/footer.ejs %>
     </div>
 </body>
 </html>
