@@ -22,18 +22,18 @@ if (typeof localStorage === "undefined" || localStorage === null) {
 
 
 let questions = [
-    {ageRange: "Baby", ageRangeTitle:"Your Early Childhood", question1: "What was the scary thing that lived in your house?", question2: "Your imaginary friend?", question3: "A made up game you played with your friends/siblings?"},
-    {ageRange: "Kid",ageRangeTitle:"Your Kid Times", question1: "What did you get in trouble for most?", question2: "What kind of student were you?", question3: "Biggest fear?"},
-    {ageRange: "Preteen",ageRangeTitle:"Your Preteen years", question1: "What did you hate having to eat for dinner?", question2: "Get into any trouble online?", question3: "Favorite thing you did on weekends?"},
-    {ageRange: "Tween",ageRangeTitle:"Your Tween Times", question1: "Who was your celebrity crush?", question2: "What song got you pumped at the school dance?", question3: "What did you think you would do when you grew up?"},
-    {ageRange: "Teenager",ageRangeTitle:"Your Teenage Years", question1: "What pissed you off more than anything else?", question2: "Biggest surprise about hitting puberty?", question3: "One of the worst things you did?"},
-    {ageRange: "Youngadult", ageRangeTitle:"Your Young Adult Years", question1: "What did you eat on a regular basis?", question2: "What was the state of your bedroom?", question3: "What did your dating life look like?"},
-    {ageRange: "Adult", ageRangeTitle:"Your Boring Adult Years", question1: "Is this where you saw yourself?", question2: "Do you wear socks with holes in them?", question3: "Where will you be in ten years?"}
+    {ageRange: "Baby", ageRangeTitle:"Your Precious Baby Years", question1: "What was the scary thing that lived in your house?", question2: "Describe your favorite toy.", question3: "A game you played with your friends/siblings?"},
+    {ageRange: "Kid", ageRangeTitle:"Your Playful Kid Years", question1: "What did you get in trouble for most?", question2: "What kind of student were you?", question3: "Biggest fear?"},
+    {ageRange: "Preteen", ageRangeTitle:"Your Confused Preteen Years", question1: "What did you hate having to eat for dinner?", question2: "Get into any trouble online?", question3: "Favorite thing you did on weekends?"},
+    {ageRange: "Tween", ageRangeTitle:"Your Dreamy Tween Years", question1: "Who was your celebrity crush?", question2: "What song got you pumped at the school dance?", question3: "What did you think you would do when you grew up?"},
+    {ageRange: "Teenager", ageRangeTitle:"Your Angsty Teenage Years", question1: "What made you angry?", question2: "Your favorite outfit?", question3: "One of the worst things you did?"},
+    {ageRange: "Youngadult", ageRangeTitle:"Your Exciting Young Adult Years", question1: "What did you do for work?", question2: "What was your living situation?", question3: "What did your social circle look like?"},
+    {ageRange: "Adult", ageRangeTitle:"Your Boring Adult Years", question1: "Is this where you saw yourself?", question2: "Any Regrets?", question3: "Where do you want to be in ten years?"}
 ]
 
-//bring the question object into this page and then put empty strings that will pertain to what is pulled from the DB, when I pull them from the DB set them = to the key of those empty strings (Like one for each answer. answer1, answer2, answer3) then that object can be passed to the view. use another switch statement. AGE RANGE MUST BE SET IN LOCAL STORAGE
-
-
+//allows the user to choose an age range and then returns a single random entry from the database from that age range.
+//uses a switch statment on the age range input to decide which table to pull from
+//uses the Array.find() method to determine which set of questions to use for the story.
 router.post("/getRandom", function(req,res,next) {
     let ageRange = req.body.ageRange;
     let questionSet = questions.find(function(element) {
