@@ -59,6 +59,10 @@
         border: 3px solid var(--brand-color);
     }
 
+    .w-10{
+        width: 3rem;
+    }
+
     select {
         border: 3px solid var(--brand-color); 
     }
