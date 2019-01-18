@@ -42,9 +42,7 @@ router.get(
 //login
 router.post(
   "/login",
-  passport.authenticate("local", function(req, res) {
-    console.log(req.authInfo);
-  }),
+  passport.authenticate("local", { failureRedirect: "/home" }),
   function(req, res) {
     res.json({ message: req.authInfo.message, status: "OK" });
   }
