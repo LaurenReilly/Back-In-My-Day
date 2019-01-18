@@ -7,28 +7,28 @@
     <div class="container">
 
         <div class="text-center">
-            <h2>Select Age Range</h2>
-            <form action="/questionsDB/getRandom" method="POST" class="mb-3">
+            <h4 class="mb-5">Select an age range to view stories</h4>
+            <form action="/questionsDB/getRandom" method="POST" class="mb-5">
                 <select name="ageRange" id="ageRange">
-                    <option value="Baby">Early Childhood(0-5)</option>
-                    <option value="Kid">Kid (5-10)</option>
-                    <option value="Preteen">Preteen (10-12)</option>
-                    <option value="Tween">Tween (11-14)</option>
-                    <option value="Teenager">Teenager (13-18)</option>
-                    <option value="Youngadult">Young Adult (18-21)</option>
-                    <option value="Adult">Adult (21+)</option>
+                    <option value="Baby">Baby</option>
+                    <option value="Kid">Kid</option>
+                    <option value="Preteen">Preteen</option>
+                    <option value="Tween">Tween</option>
+                    <option value="Teenager">Teenager</option>
+                    <option value="Youngadult">Young Adult</option>
+                    <option value="Adult">Adult</option>
                 </select>
-                <input type="submit" value="Submit" class="btn submit">
+                <input type="submit" value="Select Age" class="btn submit">
             </form>
         </div>
         <div class="d-flex flex-wrap justify-content-center">
                 <div class="text-center rounded m-2 blocks p-2">
-                    <h4 class="m-2"><%= ageRangeTitle %></h4>
-                    <h6><%= question1 %></h6>
+                    <h4 class="mt-2 mb-4 ageRangeTitle"><%= ageRangeTitle %></h4>
+                    <h6 class="m-2"><%= question1 %></h6>
                     <p><%= answer1 %></p>
-                    <h6><%= question2 %></h6>
+                    <h6 class="m-2"><%= question2 %></h6>
                     <p><%= answer2 %></p>
-                    <h6><%= question3 %></h6>
+                    <h6 class="m-2"><%= question3 %></h6>
                     <p><%= answer3 %></p>
                 </div>
         </div>
