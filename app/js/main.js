@@ -29,12 +29,9 @@ loginForm.addEventListener("submit", function(e) {
   axios
     .post("/auth/login", { username: username, password: password })
     .then(function(response) {
-      var user = response.data.user;
-      console.log(user);
-      // alert(`Account created for ${user.username}`);
+      alert(response.data.message);
     })
     .catch(function(err) {
       console.log(err);
-      // alert(`That user is already registered`);
     });
 });
