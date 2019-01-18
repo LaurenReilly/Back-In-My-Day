@@ -1,6 +1,7 @@
   var registerForm = document.getElementById("register");
   var loginForm = document.getElementById("login");
 
+
   registerForm.addEventListener("submit", function(e) {
     e.preventDefault();
     var registerFormValues = new FormData(registerForm);
@@ -20,6 +21,7 @@
   });
   
 
+
 loginForm.addEventListener("submit", function(e) {
   e.preventDefault();
   var loginFormValues = new FormData(loginForm);
@@ -28,13 +30,10 @@ loginForm.addEventListener("submit", function(e) {
   axios
     .post("/auth/login", { username: username, password: password })
     .then(function(response) {
-      var user = response.data.user;
-      console.log(user);
-      // alert(`Account created for ${user.username}`);
+      alert(response.data.message);
     })
     .catch(function(err) {
       console.log(err);
-      // alert(`That user is already registered`);
     });
 });
 

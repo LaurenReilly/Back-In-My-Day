@@ -1,15 +1,23 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const app = express();
 const path = require("path");
 const authRoutes = require("./app/routes/auth-login");
 const passport = require("passport");
-const LocalStrategy = require("passport-local");
-// const GithubStrategy = require("passport-github");
+const LocalStrategy = require("passport-local").Strategy;
 const FacebookStrategy = require("passport-facebook").Strategy;
 const GitHubStrategy = require("passport-github").Strategy;
 const bcrypt = require("bcryptjs");
+const User = require("./models/User");
+const session = require("express-session");
 require("dotenv").config();
+app.use(session({ secret: "yoo son" }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+//telling our server where the files to serve are located
+app.use(express.static(__dirname + "/app"));
 
 if (typeof localStorage === "undefined" || localStorage === null) {
   var LocalStorage = require("node-localstorage").LocalStorage;
@@ -23,15 +31,11 @@ const db = require("./config/database");
 const multer = require("multer");
 const upload = multer();
 
-const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 3000;
 
 //setting view engine and where to find views
 app.set("view engine", "ejs");
 app.set("views", "app/views");
-
-//telling our server where the files to serve are located
-app.use(express.static(__dirname + "/app"));
 
 app.use("/auth", authRoutes);
 
@@ -46,56 +50,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(upload.array());
 
 let questions = [
-  {
-    ageRange: "Baby", 
-    ageRangeTitle:"Your Early Childhood", 
-    question1: "What was the scary thing that lived in your house?", 
-    question2: "Your imaginary friend?", 
-    question3: "A made up game you played with your friends/siblings?"
-  },
-  {
-    ageRange: "Kid",
-    ageRangeTitle:"Your Kid Times", 
-    question1: "What did you get in trouble for most?", 
-    question2: "What kind of student were you?", 
-    question3: "Biggest fear?"
-  },
-  {
-    ageRange: "Preteen",
-    ageRangeTitle:"Your Preteen years", 
-    question1: "What did you hate having to eat for dinner?", 
-    question2: "Get into any trouble online?", 
-    question3: "Favorite thing you did on weekends?"
-  },
-  {
-    ageRange: "Tween",
-    ageRangeTitle:"Your Tween Times", 
-    question1: "Who was your celebrity crush?", 
-    question2: "What song got you pumped at the school dance?", 
-    question3: "What did you think you would do when you grew up?"
-  },
-  {
-    ageRange: "Teenager",
-    ageRangeTitle:"Your Teenage Years", 
-    question1: "What pissed you off more than anything else?", 
-    question2: "Biggest surprise about hitting puberty?", 
-    question3: "One of the worst things you did?"
-  },
-  {
-    ageRange: "Youngadult", 
-    ageRangeTitle:"Your Young Adult Years", 
-    question1: "What did you eat on a regular basis?", 
-    question2: "What was the state of your bedroom?", 
-    question3: "What did your dating life look like?"
-  },
-  {
-    ageRange: "Adult", 
-    ageRangeTitle:"Your Boring Adult Years", 
-    question1: "Is this where you saw yourself?", 
-    question2: "Do you wear socks with holes in them?", 
-    question3: "Where will you be in ten years?"
-  }
-];
+  {ageRange: "Baby", ageRangeTitle:"Your Precious Baby Years", question1: "What was the scary thing that lived in your house?", question2: "Describe your favorite toy.", question3: "A game you played with your friends/siblings?"},
+  {ageRange: "Kid", ageRangeTitle:"Your Playful Kid Years", question1: "What did you get in trouble for most?", question2: "What kind of student were you?", question3: "Biggest fear?"},
+  {ageRange: "Preteen", ageRangeTitle:"Your Confused Preteen Years", question1: "What did you hate having to eat for dinner?", question2: "Get into any trouble online?", question3: "Favorite thing you did on weekends?"},
+  {ageRange: "Tween", ageRangeTitle:"Your Dreamy Tween Years", question1: "Who was your celebrity crush?", question2: "What song got you pumped at the school dance?", question3: "What did you think you would do when you grew up?"},
+  {ageRange: "Teenager", ageRangeTitle:"Your Angsty Teenage Years", question1: "What made you angry?", question2: "Your favorite outfit?", question3: "One of the worst things you did?"},
+  {ageRange: "Youngadult", ageRangeTitle:"Your Exciting Young Adult Years", question1: "What did you do for work?", question2: "What was your living situation?", question3: "What did your social circle look like?"},
+  {ageRange: "Adult", ageRangeTitle:"Your Boring Adult Years", question1: "Is this where you saw yourself?", question2: "Any Regrets?", question3: "Where do you want to be in ten years?"}
+]
 
 //This is the about page which will serve as the home page.
 app.get("/", function(req, res, next) {
@@ -138,24 +100,28 @@ app.get("/privacypolicy", function(req, res) {
   res.send("This is the privacy policy page");
 });
 
-//for any route that begins with /questions we will use the questionsDB.js file to define what happens
+//for any route that begins with /questionsDB we will use the questionsDB.js file to define what happens
 app.use("/questionsDB", require("./routes/questionsDB"));
 
 
 passport.use(
   new LocalStrategy(function(username, password, done) {
-    User.findOne({ user_name: username }, function(err, user) {
-      if (err) {
+    User.findOne({ where: { user_name: username } })
+      .then(function(user) {
+        if (!user) {
+          return done(null, false, {
+            message: "No user with that username exists"
+          });
+        }
+        const isCorrectPassword = bcrypt.compareSync(password, user.password);
+        if (!isCorrectPassword) {
+          return done(null, false, { message: "Incorrect Password" });
+        }
+        return done(null, user, { message: "You've logged in SUCCESSFULLY!'" });
+      })
+      .catch(function(err) {
         return done(err);
-      }
-      if (!user) {
-        return done(null, false);
-      }
-      if (!user.verifyPassword(password)) {
-        return done(null, false);
-      }
-      return done(null, user);
-    });
+      });
   })
 );
 
@@ -182,14 +148,32 @@ passport.use(
       callbackURL: "/auth/github/callback"
     },
     function(accessToken, refreshToken, profile, cb) {
-      // User.findOrCreate({ githubId: profile.id }, function(err, user) {
-      //   return cb(err, user);
-      // });
-      console.log(profile);
-      cb();
+      User.findOrCreate({
+        where: {
+          user_name: profile.username,
+          password: bcrypt.hashSync(profile.id, 10)
+        }
+      }).spread((user, created) => {
+        console.log(
+          user.get({
+            plain: true
+          })
+        );
+        console.log(created);
+        cb();
+      });
     }
   )
 );
+
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(user, done) {
+  // db.findUserById(userId).then(user => done(null, user));
+  User.findById(user.id).then(user => done(null, user));
+});
 
 app.listen(PORT, () => {
   console.log(`Starting app on ${PORT}`);

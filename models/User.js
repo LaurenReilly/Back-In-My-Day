@@ -8,6 +8,9 @@ const User = db.define('user', {
     password: {
         type: Sequelize.STRING
     },
+    age: {
+        type: Sequelize.INTEGER
+    },
     email: {
         type: Sequelize.STRING
     }

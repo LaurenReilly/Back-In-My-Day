@@ -7,18 +7,19 @@
     <div class="container">
 
         <div class="text-center">
-            <h2>Select an age range</h2>
-            <form action="/questionsDB/getRandom" method="POST" class="mb-3">
+            <h2 class="mb-5">View our stories</h2>
+            <h4 class="mb-4">Select an age range</h4>
+            <form action="/questionsDB/getRandom" method="POST" class="mb-5">
                 <select name="ageRange" id="ageRange">
-                    <option value="Baby">Early Childhood(0-5)</option>
-                    <option value="Kid">Kid (5-10)</option>
-                    <option value="Preteen">Preteen (10-12)</option>
-                    <option value="Tween">Tween (11-14)</option>
-                    <option value="Teenager">Teenager (13-18)</option>
-                    <option value="Youngadult">Young Adult (18-21)</option>
-                    <option value="Adult">Adult (21+)</option>
+                    <option value="Baby">Baby</option>
+                    <option value="Kid">Kid</option>
+                    <option value="Preteen">Preteen</option>
+                    <option value="Tween">Tween</option>
+                    <option value="Teenager">Teenager</option>
+                    <option value="Youngadult">Young Adult</option>
+                    <option value="Adult">Adult</option>
                 </select>
-                <input type="submit" value="Submit" class="btn submit">
+                <input type="submit" value="Select Age" class="btn submit">
             </form>
         </div>
     <% include partials/footer.ejs %>
