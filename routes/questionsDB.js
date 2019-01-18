@@ -151,22 +151,22 @@ router.post("/storeQuestions", function(req,res,next) {
   });
 
 
-User.hasMany(Baby, {foreignKey: 'userId'});
-Baby.belongsTo(User, {foreignKey: 'userId'});
+// User.hasMany(Baby, {foreignKey: 'userId'});
+// Baby.belongsTo(User, {foreignKey: 'userId'});
 
-// Baby.find({ where: { ...}, include: [User]})
-router.get("/findOne", function (req, res, next) {
+// // Baby.find({ where: { ...}, include: [User]})
+// router.get("/findOne", function (req, res, next) {
     
-    Baby.findOne({
-        include: [{
-          model: User,
-          required: true
-        //   where: {id: User.id}
-         }]
-      }).then(posts => {
-        res.send(posts);
-      });
-});
+//     Baby.findOne({
+//         include: [{
+//           model: User,
+//           required: true
+//         //   where: {id: User.id}
+//          }]
+//       }).then(posts => {
+//         res.send(posts);
+//       });
+// });
 
 
 module.exports = router;
