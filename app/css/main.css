@@ -7,7 +7,8 @@
     :root {
         --bg-color: #FFFFFF;
         --brand-color: #4AC9B6;
-        --text-color: #30343F;
+        --faded-brand: #AFF7EC;
+        --text-color: #1A2135;
         --highlight: #496ECC;
     }
     
@@ -26,6 +27,7 @@
         font-size: 6em;
         color: var(--brand-color);
         font-family: 'Berkshire Swash', cursive;
+        text-shadow: 1px 1px 1px var(--bg-color);
     }
     
     h2 {
@@ -34,7 +36,7 @@
         font-family: 'Berkshire Swash', cursive;
     }
     
-    h4 {
+    h4, label {
         color: var(--text-color);
         font-size: 1.5em;
         font-family: 'Berkshire Swash', cursive;
@@ -56,9 +58,14 @@
         outline: none;
         border: 3px solid var(--brand-color);
     }
+
+    select {
+        border: 3px solid var(--brand-color); 
+    }
     
     .blocks {
-        background-color: var(--brand-color);
+        border: 10px solid var(--brand-color);
+        background-color: var(--faded-brand);
         width: 40%;
     }
     
@@ -68,6 +75,10 @@
     }
     
     /* unvisited link */
+    a {
+        transition: all .1s ease-in;
+    }
+
     a:link {
         color: var(--brand-color);
       }
@@ -80,6 +91,7 @@
       /* mouse over link */
       a:hover {
         color: var(--bg-color);
+        font-size: 1.1em;
       }
       
       /* selected link */
