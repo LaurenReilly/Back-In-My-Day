@@ -1,23 +1,24 @@
-var loginForm = document.getElementById("login");
-var registerForm = document.getElementById("register");
+  var registerForm = document.getElementById("register");
+  var loginForm = document.getElementById("login");
 
-registerForm.addEventListener("submit", function(e) {
-  e.preventDefault();
-  var registerFormValues = new FormData(registerForm);
-  var username = registerFormValues.get("username");
-  var password = registerFormValues.get("password");
-  axios
-    .post("/auth/register", { username: username, password: password })
-    .then(function(response) {
-      var user = response.data.user;
-      console.log(user);
-      alert(`Account created for ${user}`);
-    })
-    .catch(function(err) {
-      console.log(err);
-      alert(`That user is already registered`);
-    });
-});
+  registerForm.addEventListener("submit", function(e) {
+    e.preventDefault();
+    var registerFormValues = new FormData(registerForm);
+    var username = registerFormValues.get("username");
+    var password = registerFormValues.get("password");
+    axios
+      .post("/auth/register", { username: username, password: password })
+      .then(function(response) {
+        var user = response.data.user;
+        console.log(user);
+        alert(`Account created for ${user}`);
+      })
+      .catch(function(err) {
+        console.log(err);
+        alert(`That user is already registered`);
+      });
+  });
+  
 
 loginForm.addEventListener("submit", function(e) {
   e.preventDefault();
@@ -36,3 +37,8 @@ loginForm.addEventListener("submit", function(e) {
       // alert(`That user is already registered`);
     });
 });
+
+function showSignUpForm(){
+  document.getElementById("sign-up-form").style.display="inline";
+
+}
