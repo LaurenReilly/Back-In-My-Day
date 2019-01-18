@@ -5,60 +5,72 @@
     <% include partials/header.ejs %> <% include partials/navbar.ejs %>
     <div class="container">
       <div class="text-center">
+        <input type="image" src="/images/github.png" id="github-image"/>
+        <br>
+        <p>Or log in manually:</p>
         <form id="login">
-          <label form="login" for="username">Username</label>
+          <label form="login" for="username">Username:</label>
           <input
-            type="text"
-            name="username"
-            class="loginInput rounded"
-            placeholder="Username"
+          type="text"
+          name="username"
+          class="loginInput rounded"
+          placeholder="Username"
           />
-          <label form="login" for="password">Password</label>
+          <label form="login" for="password">Password:</label>
           <input
-            type="password"
-            name="password"
-            class="loginInput rounded"
-            placeholder="Password"
+          type="password"
+          name="password"
+          class="loginInput rounded"
+          placeholder="Password"
           />
           <button type="submit" class="btn submit">Submit</button>
-        </form>
+        </form><br>
+        <p>Don't have an account?</p>  
+        <button onclick="showSignUpForm()" id="sign-up-button" type="submit" class="btn submit a:hover">Register</button><br>
+        
+        <div id="sign-up-form" class="col text-center" style="display:none;">
+            <div class="text-center">
+              
+              <form id="register" class="mt-4">
+                <label form="register" for="username">Username:</label>
+                <input
+                name="username"
+                type="text"
+                class="loginInput rounded"
+                placeholder="Username"
+                />
+                <label form="register" for="password">Password:</label>
+                <input
+                name="password"
+                type="password"
+                class="loginInput rounded"
+                placeholder="Password"
+                />
+                <br />
+                <label form="register" for="email">Email:</label>
+                <input
+                name="email"
+                type="text"
+                placeholder="me@example.com"
+                class="loginInput rounded"
+                />
+                <label form="register" for="age">Age:</label>
+                <input
+                name="age"
+                type="number"
+                class="loginInput rounded w-10"
+                />
+                <br />
+                <button type="submit" class="btn submit mt-2">Register</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <% include partials/footer.ejs %>
 
-        <form id="register" class="mt-4">
-          <label form="register" for="username">Username</label>
-          <input
-            name="username"
-            type="text"
-            class="loginInput rounded"
-            placeholder="Username"
-          />
-          <label form="register" for="password">Password</label>
-          <input
-            name="password"
-            type="password"
-            class="loginInput rounded"
-            placeholder="Password"
-          />
-          <br />
-          <label form="register" for="email">Email</label>
-          <input
-            name="email"
-            type="text"
-            placeholder="me@example.com"
-            class="loginInput rounded"
-          />
-          <label form="register" for="age">Age</label>
-          <input
-            name="age"
-            type="number"
-            class="loginInput rounded w-10"
-          />
-          <br />
-          <button type="submit" class="btn submit mt-2">Register</button>
-        </form>
       </div>
-      <% include partials/footer.ejs %>
-    </div>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="../js/main.js"></script>
-  </body>
-</html>
+      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+      <script src="../js/main.js"></script>
+    </body>
+    </html>
+    
