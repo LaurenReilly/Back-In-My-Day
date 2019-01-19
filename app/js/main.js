@@ -1,5 +1,5 @@
-var loginForm = document.getElementById("login");
-var registerForm = document.getElementById("register");
+  var registerForm = document.getElementById("register");
+  var loginForm = document.getElementById("login");
 
 registerForm.addEventListener("submit", function(e) {
   e.preventDefault();
@@ -42,3 +42,8 @@ loginForm.addEventListener("submit", function(e) {
       console.log(err);
     });
 });
+
+function showSignUpForm(){
+  document.getElementById("sign-up-form").style.display="inline";
+
+}
