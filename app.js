@@ -50,14 +50,56 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(upload.array());
 
 let questions = [
-  {ageRange: "Baby", ageRangeTitle:"Your Precious Baby Years", question1: "What was the scary thing that lived in your house?", question2: "Describe your favorite toy.", question3: "A game you played with your friends/siblings?"},
-  {ageRange: "Kid", ageRangeTitle:"Your Playful Kid Years", question1: "What did you get in trouble for most?", question2: "What kind of student were you?", question3: "Biggest fear?"},
-  {ageRange: "Preteen", ageRangeTitle:"Your Confused Preteen Years", question1: "What did you hate having to eat for dinner?", question2: "Get into any trouble online?", question3: "Favorite thing you did on weekends?"},
-  {ageRange: "Tween", ageRangeTitle:"Your Dreamy Tween Years", question1: "Who was your celebrity crush?", question2: "What song got you pumped at the school dance?", question3: "What did you think you would do when you grew up?"},
-  {ageRange: "Teenager", ageRangeTitle:"Your Angsty Teenage Years", question1: "What made you angry?", question2: "Your favorite outfit?", question3: "One of the worst things you did?"},
-  {ageRange: "Youngadult", ageRangeTitle:"Your Exciting Young Adult Years", question1: "What did you do for work?", question2: "What was your living situation?", question3: "What did your social circle look like?"},
-  {ageRange: "Adult", ageRangeTitle:"Your Boring Adult Years", question1: "Is this where you saw yourself?", question2: "Any Regrets?", question3: "Where do you want to be in ten years?"}
-]
+  {
+    ageRange: "Baby",
+    ageRangeTitle: "Your Precious Baby Years",
+    question1: "What was the scary thing that lived in your house?",
+    question2: "Describe your favorite toy.",
+    question3: "A game you played with your friends/siblings?"
+  },
+  {
+    ageRange: "Kid",
+    ageRangeTitle: "Your Playful Kid Years",
+    question1: "What did you get in trouble for most?",
+    question2: "What kind of student were you?",
+    question3: "Biggest fear?"
+  },
+  {
+    ageRange: "Preteen",
+    ageRangeTitle: "Your Confused Preteen Years",
+    question1: "What did you hate having to eat for dinner?",
+    question2: "Get into any trouble online?",
+    question3: "Favorite thing you did on weekends?"
+  },
+  {
+    ageRange: "Tween",
+    ageRangeTitle: "Your Dreamy Tween Years",
+    question1: "Who was your celebrity crush?",
+    question2: "What song got you pumped at the school dance?",
+    question3: "What did you think you would do when you grew up?"
+  },
+  {
+    ageRange: "Teenager",
+    ageRangeTitle: "Your Angsty Teenage Years",
+    question1: "What made you angry?",
+    question2: "Your favorite outfit?",
+    question3: "One of the worst things you did?"
+  },
+  {
+    ageRange: "Youngadult",
+    ageRangeTitle: "Your Exciting Young Adult Years",
+    question1: "What did you do for work?",
+    question2: "What was your living situation?",
+    question3: "What did your social circle look like?"
+  },
+  {
+    ageRange: "Adult",
+    ageRangeTitle: "Your Boring Adult Years",
+    question1: "Is this where you saw yourself?",
+    question2: "Any Regrets?",
+    question3: "Where do you want to be in ten years?"
+  }
+];
 
 //This is the about page which will serve as the home page.
 app.get("/", function(req, res, next) {
@@ -68,7 +110,7 @@ app.get("/", function(req, res, next) {
 //where user can select a question set and then answer questions
 app.get("/index", function(req, res, next) {
   // res.send("I'm the home page");
-  res.render('index', {message: ""});
+  res.render("index", { message: "" });
 });
 
 //creating a users homepage that will ideally show all of their answers to their question sets
@@ -103,15 +145,12 @@ app.get("/privacypolicy", function(req, res) {
 //for any route that begins with /questionsDB we will use the questionsDB.js file to define what happens
 app.use("/questionsDB", require("./routes/questionsDB"));
 
-
 passport.use(
   new LocalStrategy(function(username, password, done) {
     User.findOne({ where: { user_name: username } })
       .then(function(user) {
         if (!user) {
-          return done(null, false, {
-            message: "No user with that username exists"
-          });
+          return done(null, false, { message: "No user exists" });
         }
         const isCorrectPassword = bcrypt.compareSync(password, user.password);
         if (!isCorrectPassword) {
