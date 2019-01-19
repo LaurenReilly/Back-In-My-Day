@@ -33,20 +33,35 @@ router.get("/github", passport.authenticate("github"));
 
 router.get(
   "/github/callback",
-  passport.authenticate("github", { failureRedirect: "/home" }),
+  passport.authenticate("github", { failureRedirect: "/" }),
   function(req, res) {
     // Successful authentication, redirect home.
-    res.redirect("/");
+    res.redirect("/index");
   }
 );
 //login
-router.post(
-  "/login",
-  passport.authenticate("local", { failureRedirect: "/home" }),
-  function(req, res) {
-    res.json({ message: req.authInfo.message, status: "OK" });
-  }
-);
+router.post("/login", function(req, res, next) {
+  passport.authenticate("local", function(err, user, info) {
+    console.log(info);
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return res.send(info);
+    }
+    req.logIn(user, function(err) {
+      if (err) {
+        return next(err);
+      }
+      return res.send({
+        status: 200,
+        redirect: "/index",
+        message: info,
+        user: user
+      });
+    });
+  })(req, res, next);
+});
 
 // Logout
 router.get("/logout", function(req, res, next) {

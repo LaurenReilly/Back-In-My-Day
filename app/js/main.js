@@ -9,7 +9,12 @@ registerForm.addEventListener("submit", function(e) {
   var age = registerFormValues.get("age");
   var email = registerFormValues.get("email");
   axios
-    .post("/auth/register", { username: username, password: password, age: age, email: email })
+    .post("/auth/register", {
+      username: username,
+      password: password,
+      age: age,
+      email: email
+    })
     .then(function(response) {
       var user = response.data.user;
       console.log(user);
@@ -29,7 +34,9 @@ loginForm.addEventListener("submit", function(e) {
   axios
     .post("/auth/login", { username: username, password: password })
     .then(function(response) {
-      alert(response.data.message);
+      console.log(response.data);
+      alert(response.data.message.message);
+      window.location = response.data.redirect;
     })
     .catch(function(err) {
       console.log(err);

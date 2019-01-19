@@ -4,142 +4,147 @@
 -use for titles:
     font-family: 'Berkshire Swash', cursive; */
 
-    :root {
-        --bg-color: #FFFFFF;
-        --brand-color: #4AC9B6;
-        --faded-brand: #AFF7EC;
-        --text-color: #1A2135;
-        --highlight: #496ECC;
-    }
-    
-    body {
-        font-size: 1em;
-        background-color: var(--bg-color);
-        font-family: 'Raleway', sans-serif;
-    } 
-    
-    .header {
-        width: 100%;
-        background-color: var(--text-color);
-    }
-    
-    h1 {
-        font-size: 6em;
-        color: var(--brand-color);
-        font-family: 'Berkshire Swash', cursive;
-        text-shadow: 1px 1px 1px var(--bg-color);
-    }
-    
-    h2 {
-        color: var(--highlight);
-        font-size: 4em;
-        font-family: 'Berkshire Swash', cursive;
-    }
-    
-    h4, label {
-        color: var(--text-color);
-        font-size: 1.5em;
-        font-family: 'Berkshire Swash', cursive;
-        margin: 0px;
-    }
-    
-    h6 {
-        font-size: 1.1em;
-        color: var(--highlight);
-    }
-    
-    .submit {
-        background-color: var(--brand-color);
-        color: var(--bg-color);
-        font-family: 'Raleway', sans-serif;
-    }
-    
-    textarea, textarea:focus, .loginInput, .loginInput:focus {
-        outline: none;
-        border: 3px solid var(--brand-color);
-    }
+:root {
+  --bg-color: #ffffff;
+  --brand-color: #4ac9b6;
+  --faded-brand: #aff7ec;
+  --text-color: #1a2135;
+  --highlight: #496ecc;
+}
 
-    .w-10{
-        width: 3rem;
-    }
+body {
+  font-size: 1em;
+  background-color: var(--bg-color);
+  font-family: "Raleway", sans-serif;
+}
 
-    select {
-        border: 3px solid var(--brand-color); 
-    }
-    
-    .blocks {
-        border: 10px solid var(--brand-color);
-        background-color: var(--faded-brand);
-        width: 40%;
-    }
-    
-    .navbar {
-        background-color: var(--text-color);
-        color: var(--brand-color);
-    }
-    
-    /* unvisited link */
-    a {
-        transition: all .1s ease-in;
-    }
+.header {
+  width: 100%;
+  background-color: var(--text-color);
+}
 
-    a:link {
-        color: var(--brand-color);
-      }
-      
-      /* visited link */
-      a:visited {
-        color: var(--brand-color);
-      }
-      
-      /* mouse over link */
-      a:hover {
-        color: var(--bg-color);
-        font-size: 1.1em;
-      }
-      
-      /* selected link */
-      a:active {
-        color: var(--highlight);
-      }
-    
-    p  {
-        color: var(--text-color);
-    }
-    
-    .bgimage {
-        background-image: linear-gradient(rgba(255, 255, 255, 0.80), rgba(255, 255, 255, 0.80)), url("/images/faces.jpg");
-        position: absolute;
-        z-index: -1;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        width: 100%;
-        height: 100%;
-    }
-    
-    .row {
-      background-color: none;
-      font-size: 12px;
-      position: relative;
-      top: 40%;
-      width: 100%;
-    }
-    
-    .tagline {
-        background-color: none;
-        position: relative;
-        top: 50%;
-    }
-    
-    .steps {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        border: 2px solid #4AC9B6;
-        border-radius: 50px 20px;
-    }
-    
-    
-    
+h1 {
+  font-size: 6em;
+  color: var(--brand-color);
+  font-family: "Berkshire Swash", cursive;
+  text-shadow: 1px 1px 1px var(--bg-color);
+}
+
+h2 {
+  color: var(--highlight);
+  font-size: 4em;
+  font-family: "Berkshire Swash", cursive;
+}
+
+h4,
+label {
+  color: var(--text-color);
+  font-size: 1.5em;
+  font-family: "Berkshire Swash", cursive;
+  margin: 0px;
+}
+
+h6 {
+  font-size: 1.1em;
+  color: var(--highlight);
+}
+
+.submit {
+  background-color: var(--brand-color);
+  color: var(--bg-color);
+  font-family: "Raleway", sans-serif;
+}
+
+textarea,
+textarea:focus,
+.loginInput,
+.loginInput:focus {
+  outline: none;
+  border: 3px solid var(--brand-color);
+}
+
+.w-10 {
+  width: 3rem;
+}
+
+select {
+  border: 3px solid var(--brand-color);
+}
+
+.blocks {
+  border: 10px solid var(--brand-color);
+  background-color: var(--faded-brand);
+  width: 40%;
+}
+
+.navbar {
+  background-color: var(--text-color);
+  color: var(--brand-color);
+}
+
+/* unvisited link */
+a {
+  transition: all 0.1s ease-in;
+}
+
+a:link {
+  color: var(--brand-color);
+}
+
+/* visited link */
+a:visited {
+  color: var(--brand-color);
+}
+
+/* mouse over link */
+a:hover {
+  color: var(--bg-color);
+  font-size: 1.1em;
+}
+
+/* selected link */
+a:active {
+  color: var(--highlight);
+}
+
+p {
+  color: var(--text-color);
+}
+
+.bgimage {
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0.8)
+    ),
+    url("/images/faces.jpg");
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.row {
+  background-color: none;
+  font-size: 12px;
+  position: relative;
+  top: 40%;
+  width: 100%;
+}
+
+.tagline {
+  background-color: none;
+  position: relative;
+  top: 50%;
+}
+
+.steps {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  border: 2px solid #4ac9b6;
+  border-radius: 50px 20px;
+}
