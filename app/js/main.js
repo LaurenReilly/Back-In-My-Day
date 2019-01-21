@@ -1,5 +1,5 @@
-  var registerForm = document.getElementById("register");
-  var loginForm = document.getElementById("login");
+var registerForm = document.getElementById("register");
+var loginForm = document.getElementById("login");
 
 registerForm.addEventListener("submit", function(e) {
   e.preventDefault();
@@ -35,15 +35,19 @@ loginForm.addEventListener("submit", function(e) {
     .post("/auth/login", { username: username, password: password })
     .then(function(response) {
       console.log(response.data);
-      alert(response.data.message.message);
-      window.location = response.data.redirect;
+      if (!response.data.user) {
+        alert(response.data.message);
+      } else {
+        alert(response.data.message.message);
+        //We need to grab the username and render to the screen
+        window.location = response.data.redirect;
+      }
     })
     .catch(function(err) {
       console.log(err);
     });
 });
 
-function showSignUpForm(){
-  document.getElementById("sign-up-form").style.display="inline";
-
+function showSignUpForm() {
+  document.getElementById("sign-up-form").style.display = "inline";
 }
