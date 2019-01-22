@@ -34,11 +34,14 @@ loginForm.addEventListener("submit", function(e) {
   axios
     .post("/auth/login", { username: username, password: password })
     .then(function(response) {
-      console.log(response.data);
+      console.log(response.data.user);
       if (!response.data.user) {
         alert(response.data.message);
+        localStorage.clear();
       } else {
         alert(response.data.message.message);
+        localStorage.clear();
+        localStorage.setItem('username', response.data.user);
         //We need to grab the username and render to the screen
         window.location = response.data.redirect;
       }
