@@ -1,15 +1,23 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const app = express();
 const path = require("path");
 const authRoutes = require("./app/routes/auth-login");
 const passport = require("passport");
-const LocalStrategy = require("passport-local");
-// const GithubStrategy = require("passport-github");
+const LocalStrategy = require("passport-local").Strategy;
 const FacebookStrategy = require("passport-facebook").Strategy;
 const GitHubStrategy = require("passport-github").Strategy;
 const bcrypt = require("bcryptjs");
+const User = require("./models/User");
+const session = require("express-session");
 require("dotenv").config();
+app.use(session({ secret: "yoo son" }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+//telling our server where the files to serve are located
+app.use(express.static(__dirname + "/app"));
 
 if (typeof localStorage === "undefined" || localStorage === null) {
   var LocalStorage = require("node-localstorage").LocalStorage;
@@ -23,15 +31,11 @@ const db = require("./config/database");
 const multer = require("multer");
 const upload = multer();
 
-const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 3000;
 
 //setting view engine and where to find views
 app.set("view engine", "ejs");
 app.set("views", "app/views");
-
-//telling our server where the files to serve are located
-app.use(express.static(__dirname + "/app"));
 
 app.use("/auth", authRoutes);
 
@@ -102,18 +106,22 @@ app.use("/questionsDB", require("./routes/questionsDB"));
 
 passport.use(
   new LocalStrategy(function(username, password, done) {
-    User.findOne({ user_name: username }, function(err, user) {
-      if (err) {
+    User.findOne({ where: { user_name: username } })
+      .then(function(user) {
+        if (!user) {
+          return done(null, false, {
+            message: "No user with that username exists"
+          });
+        }
+        const isCorrectPassword = bcrypt.compareSync(password, user.password);
+        if (!isCorrectPassword) {
+          return done(null, false, { message: "Incorrect Password" });
+        }
+        return done(null, user, { message: "You've logged in SUCCESSFULLY!'" });
+      })
+      .catch(function(err) {
         return done(err);
-      }
-      if (!user) {
-        return done(null, false);
-      }
-      if (!user.verifyPassword(password)) {
-        return done(null, false);
-      }
-      return done(null, user);
-    });
+      });
   })
 );
 
@@ -140,14 +148,32 @@ passport.use(
       callbackURL: "/auth/github/callback"
     },
     function(accessToken, refreshToken, profile, cb) {
-      // User.findOrCreate({ githubId: profile.id }, function(err, user) {
-      //   return cb(err, user);
-      // });
-      console.log(profile);
-      cb();
+      User.findOrCreate({
+        where: {
+          user_name: profile.username,
+          password: bcrypt.hashSync(profile.id, 10)
+        }
+      }).spread((user, created) => {
+        console.log(
+          user.get({
+            plain: true
+          })
+        );
+        console.log(created);
+        cb();
+      });
     }
   )
 );
+
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(user, done) {
+  // db.findUserById(userId).then(user => done(null, user));
+  User.findById(user.id).then(user => done(null, user));
+});
 
 app.listen(PORT, () => {
   console.log(`Starting app on ${PORT}`);
