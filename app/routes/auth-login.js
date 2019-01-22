@@ -57,7 +57,7 @@ router.post("/login", function(req, res, next) {
         status: 200,
         redirect: "/index",
         message: info,
-        user: user
+        user: user.user_name
       });
     });
   })(req, res, next);

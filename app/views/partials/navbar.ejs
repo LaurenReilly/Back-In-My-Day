@@ -3,12 +3,16 @@
     class="collapse navbar-collapse justify-content-left align-items-center"
     id="navbarNav"
   >
-    <ul class="navbar-nav">
+    <ul class="navbar-nav ml-5">
       <li class="nav-item"><a class="nav-link m-1" href="/">About</a></li>
       <!-- <li class="nav-item"><a class="nav-link" href="/home">Home</a></li> -->
       <li class="nav-item"><a role="navigation" class="nav-link m-1" href="/stories">Stories</a></li>
       <li class="nav-item"><a role="navigation" class="nav-link m-1" href="/index">Questions</a></li>
       <li class="nav-item"><a role="navigation" class="nav-link m-1" href="/auth/login">Login</a></li>
     </ul>
+    <ul class="navbar-nav ml-auto mr-5">
+      <li class="nav-item"><span id="user-name" role="navigation" class="nav-link m-1"></span></li>
+    </ul>
   </div>
 </nav>
+<script src="../../js/username.js"></script>
