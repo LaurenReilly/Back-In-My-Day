@@ -1,5 +1,5 @@
-var loginForm = document.getElementById("login");
 var registerForm = document.getElementById("register");
+var loginForm = document.getElementById("login");
 
 registerForm.addEventListener("submit", function(e) {
   e.preventDefault();
@@ -9,7 +9,12 @@ registerForm.addEventListener("submit", function(e) {
   var age = registerFormValues.get("age");
   var email = registerFormValues.get("email");
   axios
-    .post("/auth/register", { username: username, password: password, age: age, email: email })
+    .post("/auth/register", {
+      username: username,
+      password: password,
+      age: age,
+      email: email
+    })
     .then(function(response) {
       var user = response.data.user;
       console.log(user);
@@ -29,9 +34,20 @@ loginForm.addEventListener("submit", function(e) {
   axios
     .post("/auth/login", { username: username, password: password })
     .then(function(response) {
-      alert(response.data.message);
+      console.log(response.data);
+      if (!response.data.user) {
+        alert(response.data.message);
+      } else {
+        alert(response.data.message.message);
+        //We need to grab the username and render to the screen
+        window.location = response.data.redirect;
+      }
     })
     .catch(function(err) {
       console.log(err);
     });
 });
+
+function showSignUpForm() {
+  document.getElementById("sign-up-form").style.display = "inline";
+}
