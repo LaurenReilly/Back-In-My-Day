@@ -4,8 +4,13 @@
 <body>
     <% include partials/header.ejs %>
     <% include partials/navbar.ejs %>
+    <script>
+        if(!localStorage.getItem('username')){
+            window.location = "/auth/login";
+        }
+    </script>
     <div class="container">
-
+        
         <div class="main text-center">
             <h2 class="mb-5">Tell us about yourself!</h2>
             <!-- based on what age they select they will be given a different set of questions send as a post request and server will respond with questions corresponding to the age range -->

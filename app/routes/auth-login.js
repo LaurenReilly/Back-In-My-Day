@@ -57,7 +57,11 @@ router.post("/login", function(req, res, next) {
         status: 200,
         redirect: "/index",
         message: info,
+<<<<<<< HEAD
         user: user
+=======
+        user: user.user_name
+>>>>>>> master
       });
     });
   })(req, res, next);
@@ -66,7 +70,7 @@ router.post("/login", function(req, res, next) {
 // Logout
 router.get("/logout", function(req, res, next) {
   req.logout();
-  res.json({ status: "OK" });
+  res.redirect("/auth/login");
 });
 
 router.post("/register", function(req, res) {
