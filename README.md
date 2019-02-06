@@ -1,15 +1,16 @@
 # Back in my Day!
 Date: Jan 09, 2019
+https://back-in-my-day.herokuapp.com
 
 ## Project Concept:
-Creating a snapshot of your life through the years that other users can view
+A social storytelling platform. Users can choose time periods from their life and answer the provided question set. Then you can select from the age ranges to view stories other users have submitted at random. All question sets and answers are anonymous currently though username/password are stored encrypted in the database for potential development in the future.
 
-## Group Members:
+## Developers:
 
--   Lauren Reilly
--   Nick Benoit
--   Merry Mac Miller
--   CJ Horlebein
+-   Lauren Reilly (Design, Database, Front End)
+-   Nick Benoit (Password Encryption and Login)
+-   Merry Mac Miller (Home Page)
+-   CJ Horlebein (Deploying to Heroku, Database)
 
 ### Changelog:
 
@@ -28,4 +29,4 @@ Creating a snapshot of your life through the years that other users can view
 
 ### Project Overview:
 
-Ever wanted to know what other people felt when they were younger? How about what they were afraid of? This site is built to allow users to see the thought of the community for when their past. Back in my Day gives people the ability to view the world through each other's eyes and perhaps share some of their past as well. 
+Ever wanted to know what other people felt when they were younger? How about what they were afraid of? This site is built to allow users to see the experiences and thougts of the community from their past. Back in my Day gives people the ability to view the world through each other's eyes and share their own unique stories. 
